@@ -12,5 +12,5 @@ void Cat::eat() {
 
 std::string Cat::say() {
   if(fullness < 10) return "Meow!!";
-  return "Mewo~";
+  return "Meow~";
 }

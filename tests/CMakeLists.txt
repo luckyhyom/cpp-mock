@@ -38,3 +38,12 @@ target_link_libraries(CatTest PRIVATE gtest_main gmock_main cat_module iot_lib)
 # ======================
 # CTest 명령어로 여러개의 테스트 파일을 한번에 실행할 수 있다.
 add_test(NAME CatTest COMMAND CatTest)
+
+
+# ======================
+# Mocking 첫번째 예제 - 파일을 교체하기
+add_executable(CatTest2_Mock CatTest2_Mock.cc)
+add_library(mock_iot_lib ${CMAKE_SOURCE_DIR}/mock/iot_mock.cc)
+target_link_libraries(CatTest2_Mock PRIVATE gtest_main gmock_main cat_module mock_iot_lib)
+
+add_test(NAME CatTest2_Mock COMMAND CatTest2_Mock)

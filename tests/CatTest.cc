@@ -2,6 +2,9 @@
 #include <gmock/gmock.h>
 #include "Cat.h"
 
+/**
+ * 📌 의존성 주입(DI)이 불가능한 상태임을 가정한다.
+ */
 TEST(CatTest, Eat) {
   Cat cat;
   cat.eat();

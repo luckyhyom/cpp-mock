@@ -1,0 +1,24 @@
+# CMake 프로그램의 최소 버전
+cmake_minimum_required(VERSION 3.11)
+
+# 프로젝트 정보
+project(
+  Cat
+  VERSION 0.1
+  DESCRIPTION "예제 프로젝트"
+  LANGUAGES CXX
+)
+
+# 기본적으로 헤더 파일은 /include에서 검색한다.
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
+# 라이브러리 만들기
+add_library(iot_lib ${CMAKE_SOURCE_DIR}/libs/iot.cc)
+# iot의 헤더 파일 검색은 따로 정해준다.
+target_include_directories(iot_lib PUBLIC ${CMAKE_SOURCE_DIR}/libs)
+
+
+# 프로그램 생성
+add_executable(CatProgram main.cc src/Cat.cc)
+# 라이브러리를 포함시키기
+target_link_libraries(CatProgram PRIVATE iot_lib)

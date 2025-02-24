@@ -47,3 +47,13 @@ add_library(mock_iot_lib ${CMAKE_SOURCE_DIR}/mock/iot_mock.cc)
 target_link_libraries(CatTest2_Mock PRIVATE gtest_main gmock_main cat_module mock_iot_lib)
 
 add_test(NAME CatTest2_Mock COMMAND CatTest2_Mock)
+
+
+# ======================
+# Mocking 두번째 예제 - 값을 조작하기 (구현 파일 교체 및 전역 변수 활용)
+add_library(mock_dyn_iot_lib ${CMAKE_SOURCE_DIR}/mock/iot_mock_dynamic.cc)
+include_directories(mock_dyn_iot_lib PUBLIC ${CMAKE_SOURCE_DIR}/mock/)
+add_executable(CatTest3_Mock_Dynamic CatTest3_Mock_Dynamic.cc)
+target_link_libraries(CatTest3_Mock_Dynamic PRIVATE gtest_main gmock_main cat_module mock_dyn_iot_lib)
+
+add_test(NAME CatTest3_Mock_Dynamic COMMAND CatTest3_Mock_Dynamic)

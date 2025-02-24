@@ -22,5 +22,5 @@ TEST(CatTest, EatFail) {
   /**
    * ❌ Mocking한 checkHealth의 결과값이 고정되어있어 다른 케이스를 테스트 할 수 없다.
    */
-  EXPECT_EQ(cat.say(), "Meow!");
+  EXPECT_EQ(cat.say(), "Meow!!");
 }

@@ -26,4 +26,9 @@ namespace iot {
       return true; // 기본값 (모의 객체가 없으면 production과 동일하게 true)
     }
   }
+
+  // 📌 테스트할때 사용하는 함수가 아니더라도, Cat.cc의 다른 함수에서 호출하고있으므로 링킹할때 구현체로서 필요로함
+  bool Doctor::checkHealth(int fullness) {
+    return chain::checkHealth(fullness);
+  }
 }

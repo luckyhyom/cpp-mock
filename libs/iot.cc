@@ -16,8 +16,8 @@ namespace iot {
     }
   }
 
-  bool Doctor::checkHealth(int fullness) {
-    return chain::checkHealth(fullness);
+  bool Doctor::checkHealth(int money) {
+    return chain::checkHealth(money);
   }
 }
 

@@ -5,4 +5,5 @@ class Cat {
   public:
     void eat();
     std::string say();
+    int call();
 };

@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.31)
 project(CatTests)
 
+# 전체 프로젝트에 컴파일 옵션 추가
+add_compile_options(-Wall -Wextra)
+
 # ======================
 # CTest 명령어로 여러개의 테스트 파일을 한번에 실행할 수 있다.
 enable_testing()
@@ -59,7 +62,7 @@ target_link_libraries(CatTest3_Mock_Dynamic PRIVATE gtest_main gmock_main cat_mo
 add_test(NAME CatTest3_Mock_Dynamic COMMAND CatTest3_Mock_Dynamic)
 
 # ======================
-# Mocking 세번째 예제 - 값을 조작하기 (구현 파일 교체 및 전역 변수 활용)
+# Mocking 세번째 예제 - 값을 조작하기 (구현 파일 교체 및 전역 변수 활용) (GMock을 사용한 함수 오버라이딩)
 add_library(iot_gmock_lib ${CMAKE_SOURCE_DIR}/mock/iot_gmock.cc)
 include_directories(iot_gmock_lib PUBLIC ${CMAKE_SOURCE_DIR}/mock/)
 target_link_libraries(iot_gmock_lib PRIVATE gmock_main)
@@ -67,3 +70,13 @@ add_executable(CatTest4_GMock CatTest4_GMock.cc)
 target_link_libraries(CatTest4_GMock PRIVATE gtest_main gmock_main cat_module iot_gmock_lib)
 
 add_test(NAME CatTest4_GMock COMMAND CatTest4_GMock)
+
+# ======================
+# Mocking 세번째 예제 - 값을 조작하기 (구현 파일 교체 및 전역 변수 활용) (GMock을 사용한 클래스 오버라이딩)
+add_library(iot_gmock_class_lib ${CMAKE_SOURCE_DIR}/mock/iot_gmock_class.cc)
+include_directories(iot_gmock_class_lib PUBLIC ${CMAKE_SOURCE_DIR}/mock/)
+target_link_libraries(iot_gmock_class_lib PRIVATE gmock_main)
+add_executable(CatTest5_GMock_Class CatTest5_GMock_Class.cc)
+target_link_libraries(CatTest5_GMock_Class PRIVATE gtest_main gmock_main cat_module iot_gmock_class_lib)
+
+add_test(NAME CatTest5_GMock_Class COMMAND CatTest5_GMock_Class)
